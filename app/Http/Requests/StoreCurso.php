@@ -23,6 +23,7 @@ class StoreCurso extends FormRequest
     {
         return [
             'name' => ['required','min:3'], //se puede usar un array para agregar mas validaciones
+            'slug' => 'required|unique:cursos',
             'description' => 'required|min:10', //se puede usar un string para agregar mas validaciones
             'categoria' => 'required'
         ];

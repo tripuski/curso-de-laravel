@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>En esta pagina podras crear un curso</h1>
-    <form action="{{route('curso.store')}}" method="POST">
+    <form action="{{route('cursos.store')}}" method="POST">
         @csrf
         <label for="name" >
             Nombre:
@@ -12,6 +12,17 @@
             <input type="text" name="name" value="{{old('name')}}">
         </label>
         @error('name')
+            <br>
+           <span>*{{$message}}</span> 
+            <br>
+        @enderror
+        <br>
+        <label for="slug" >
+            Slug:
+            <br>
+            <input type="text" name="slug" value="{{old('slug')}}">
+        </label>
+        @error('slug')
             <br>
            <span>*{{$message}}</span> 
             <br>

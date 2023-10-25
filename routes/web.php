@@ -24,12 +24,15 @@ use App\Http\Controllers\CursoController;
 
 Route::get('/', HomeController::class);
 
-Route::controller(CursoController::class)->group(function(){
-    Route::get('cursos', 'index')->name("cursos.index");
-    Route::get('cursos/create', 'create')->name("curso.create");
-    Route::post('cursos', 'store')->name("curso.store");
-    Route::get('cursos/{curso}', 'show')->name("curso.show");
-    Route::get('cursos/{curso}/edit', 'edit')->name("curso.edit");
-    Route::put('cursos/{curso}', 'update')->name("curso.update");
-    Route::delete('cursos/{curso}', 'destroy')->name("curso.destroy");
-});
+Route::resource('cursos', CursoController::class);
+// Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas' => 'curso'])->names('cursos');
+// Route::controller(CursoController::class)->group(function(){
+//     Route::get('cursos', 'index')->name("cursos.index");
+//     Route::get('cursos/create', 'create')->name("curso.create");
+//     Route::post('cursos', 'store')->name("curso.store");
+//     Route::get('cursos/{curso}', 'show')->name("curso.show");
+//     Route::get('cursos/{curso}/edit', 'edit')->name("curso.edit");
+//     Route::put('cursos/{curso}', 'update')->name("curso.update");
+//     Route::delete('cursos/{curso}', 'destroy')->name("curso.destroy");
+// });
+

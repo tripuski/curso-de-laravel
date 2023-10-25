@@ -14,5 +14,10 @@ class Curso extends Model
 
     // Definimos los campos que se pueden rellenar
     // protected $fillable = ['name', 'description', 'categoria'];
-    protected $guarded = ['estado'];
+    protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
