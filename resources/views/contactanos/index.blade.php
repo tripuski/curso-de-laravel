@@ -3,43 +3,42 @@
 @section('title', 'Contactanos')
 
 @section('content')
-    <h1>Dejanos un mensaje</h1>
-    <form action="{{route('contactanos.store')}}" method="POST">
-        @csrf
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="name" value="{{old('name')}}">
-        </label>
-        <br>
-        @error('name')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <label>
-            Correo:
-            <br>
-            <input type="text" name="correo" value="{{old('correo')}}">
-        </label>
-        <br>
-        @error('correo')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <label>
-            Mensaje:
-            <br>
-            <textarea name="mensaje" rows="4">{{old('mensaje')}}</textarea>
-        </label>
-        <br>
-        @error('mensaje')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <button type="submit">Enviar mensaje</button>
-    </form>
+    <div class="container">
+        <h1 class="my-4">Déjanos un mensaje</h1>
+        <form action="{{ route('contactanos.store') }}" method="POST">
+            @csrf
 
-    @if (session('info'))
-        <script>
-            alert("{{session('info')}}");
-        </script>
-    @endif
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                @error('name')
+                    <p class="text-danger"><strong>{{ $message }}</strong></p>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="text" class="form-control" name="correo" value="{{ old('correo') }}">
+                @error('correo')
+                    <p class="text-danger"><strong>{{ $message }}</strong></p>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea class="form-control" name="mensaje" rows="4">{{ old('mensaje') }}</textarea>
+                @error('mensaje')
+                    <p class="text-danger"><strong>{{ $message }}</strong></p>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Enviar mensaje</button>
+        </form>
+
+        @if (session('info'))
+            <div class="alert alert-success mt-3" role="alert">
+                {{ session('info') }}
+            </div>
+        @endif
+    </div>
 @endsection
-

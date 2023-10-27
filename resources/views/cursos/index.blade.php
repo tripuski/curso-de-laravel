@@ -3,13 +3,18 @@
 @section('title', 'Cursos')
 
 @section('content')
-    <h1>Bievenido a la pagina de cursos</h1>
-    <a href="{{route('cursos.create')}}">Crear curso</a>
-    <ul>
-        @foreach ($cursos as $curso)
-            <a href="{{route('cursos.show',$curso)}}"><li>{{$curso->name}}</li></a>
-        @endforeach
-    </ul>
-    {{$cursos->links()}}
-@endsection
+    <div class="container">
+        <h1 class="my-4">Bienvenido a la página de cursos</h1>
+        <a class="btn btn-primary mb-4" href="{{ route('cursos.create') }}">Crear curso</a>
+        
+        <div class="list-group">
+            @foreach ($cursos as $curso)
+                <a href="{{ route('cursos.show', $curso) }}" class="list-group-item list-group-item-action">{{ $curso->name }}</a>
+            @endforeach
+        </div>
 
+        <div class="mt-4">
+            {{ $cursos->links() }}
+        </div>
+    </div>
+@endsection

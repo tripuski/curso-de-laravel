@@ -1,59 +1,47 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Editar')
+@section('title', 'Editar Curso')
 
 @section('content')
-    <h1>En esta pagina podras Editar un curso</h1>
+    <div class="container">
+        <h1 class="my-4">En esta página podrás editar un curso</h1>
+        <form action="{{ route('cursos.update', $curso) }}" method="POST">
+            @csrf
+            @method('put')
 
-    <form action="{{route('cursos.update',$curso)}}" method="post">
-        @csrf
-        @method('put')
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" name="name" value="{{ old('name', $curso->name) }}">
+                @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
 
-        <label for="name" >
-            Nombre:
-            <br>
-            <input type="text" name="name" value="{{old('name',$curso->name)}}">
-        </label>
-        @error('name')
-            <br>
-           <span>*{{$message}}</span> 
-            <br>
-        @enderror
-        <br>
-        <label for="slug" >
-            Slug:
-            <br>
-            <input type="text" name="slug" value="{{old('slug',$curso->slug)}}">
-        </label>
-        @error('slug')
-            <br>
-           <span>*{{$message}}</span> 
-            <br>
-        @enderror
-        <br>
-        <label for="description">
-            Descripcion:
-            <br>
-            <textarea name="description" rows="5">{{old('description',$curso->description)}}</textarea>
-        </label>
-        @error('description')
-            <br>
-           <span>*{{$message}}</span> 
-            <br>
-        @enderror
-        <br>
-        <label for="categoria">
-            Categoria:
-            <br>
-            <input type="text" name="categoria" value="{{old('categoria',$curso->categoria)}}">
-        </label>
-        @error('categoria')
-            <br>
-           <span>*{{$message}}</span> 
-            <br>
-        @enderror
-        <br>
-        <button type="submit">Atualizar formulario</button>
-    </form>
+            <div class="form-group">
+                <label for="slug">Slug:</label>
+                <input type="text" class="form-control" name="slug" value="{{ old('slug', $curso->slug) }}">
+                @error('slug')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <textarea class="form-control" name="description" rows="5">{{ old('description', $curso->description) }}</textarea>
+                @error('description')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <input type="text" class="form-control" name="categoria" value="{{ old('categoria', $curso->categoria) }}">
+                @error('categoria')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Actualizar formulario</button>
+        </form>
+    </div>
 @endsection
-
